@@ -1,7 +1,6 @@
 <?php
     require '../backend/bd/Conexion.php';
 
-
     if(isset($_POST['login'])){
 
         $errMsg='';

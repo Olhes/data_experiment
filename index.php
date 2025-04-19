@@ -1,3 +1,3 @@
 <?php
-    header(header: 'location:fronted/login.php');
+    header(header: 'location:frontend/login.php');
 ?>
