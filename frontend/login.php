@@ -26,7 +26,7 @@
                     ?>
                     
 
-                <form action="" method="POST" autocomplete="off">            
+                <form action="dashboard/user.php" method="POST" autocomplete="off">
                 <input  
                     type="text" name="username" placeholder="nombre de usuario" value="<?php if(isset($_POST['username'])) echo $_POST['username']?>" autocomplete="off"
                     class="form-input span-2"
