@@ -1,4 +1,3 @@
 <?php declare(strict_types=1);
-    include 'vendor/autoload.php';
+    require_once 'vendor/autoload.php';
     header(header: 'location:frontend/login.php');
-?>
