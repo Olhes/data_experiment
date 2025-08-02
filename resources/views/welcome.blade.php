@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     {{-- Tu CSS personalizado. Asume que moviste 'backend/css/index.css' a 'public/backend/css/index.css' --}}
-    <link rel="stylesheet" href="{{ asset('backend/css/index.css') }}"> 
-    
+    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <title>web</title>
@@ -16,7 +16,7 @@
     <header>
         <div class="menu container">
             {{-- Imágenes. Asume que moviste 'images/' a 'public/images/' --}}
-            <img class="logo-1" src="{{ asset('images/logo.jpg') }}" alt=""> 
+            <img class="logo-1" src="{{ asset('images/logo.jpg') }}" alt="">
             <input type="checkbox" id="menu">
             <label for="menu">
                 <img src="{{ asset('images/menu.png') }}" class="menu-icono">
@@ -32,7 +32,7 @@
                 </div>
 
                 <img class="logo-2" src="{{ asset('images/logo.jpg') }}" alt="">
-                
+
                 <div class="menu-2">
                     <ul>
                         <li><a href="">Login</a></li>
@@ -41,8 +41,8 @@
                     <div class="socials">
                         <a href="">
                             <div class="social">
-                                <img src="{{ asset('images/s1.svg') }}" alt=""> 
-                            </div>    
+                                <img src="{{ asset('images/s1.svg') }}" alt="">
+                            </div>
                         </a>
 
                         <a href="">
@@ -60,7 +60,7 @@
                 </div>
             </nav>
         </div>
-    </header> 
+    </header>
 
     <section class="hero-video-section">
         <video autoplay loop muted playsinline class="background-video">
@@ -83,7 +83,7 @@
         </div>
         <div class="hero-content-right">
             <p>"Nos enorgullece brindar atención médica de excelencia, combinando la más avanzada tecnología con un equipo humano altamente calificado y comprometido con su bienestar. Desde nuestra fundación, nuestra misión ha sido ser un pilar de salud y esperanza para la comunidad, ofreciendo servicios integrales y personalizados que abordan las necesidades de cada paciente con la calidez y el respeto que merecen. Nos enorgullece ser un centro de innovación y cuidado, donde su salud es siempre nuestra máxima prioridad."</p>
-            
+
             <ul class="checklist">
                 <li><i class="fas fa-check-circle checkmark-icon"></i> Sistema de Control de Calidad</li>
                 <li><i class="fas fa-check-circle checkmark-icon"></i> Mano de Obra Inigualable</li>
@@ -105,7 +105,7 @@
                         <span class="date">Jan 22,2025</span>
                         <span class="author">Wayne King</span>
                     </div>
-                    
+
                     <h3 class="article-title">6 Tips to Protect Your Mental Health</h3>
                     <p class="article-description">It's natural to feel anxious, worry and grief any time you're diagnosed with a condition that's relatively from If you get positive for COVID-19, or are presumed to be positive.</p>
                     <a href="#" class="read-more-btn">Read More</a>
@@ -122,7 +122,7 @@
                         <span class="date">Jan 22,2025</span>
                         <span class="author">Wayne King</span>
                     </div>
-                    
+
                     <h3 class="article-title">Unsure About Wearing a Face Mask? Here's How and Why</h3>
                     <p class="article-description">It's natural to feel anxious, worry and grief any time you're diagnosed with a condition that's relatively from If you get positive for COVID-19, or are presumed to be positive.</p>
                     <a href="#" class="read-more-btn">Read More</a>
@@ -139,7 +139,7 @@
                         <span class="date">Jan 22,2025</span>
                         <span class="author">Wayne King</span>
                     </div>
-                    
+
                     <h3 class="article-title">6 Tips to Protect Your Mental Health</h3>
                     <p class="article-description">It's natural to feel anxious, worry and grief any time you're diagnosed with a condition that's relatively from If you get positive for COVID-19, or are presumed to be positive.</p>
                     <a href="#" class="read-more-btn">Read More</a>
@@ -148,13 +148,13 @@
         </div>
     </section>
 </div>
- 
+
 <footer>
     <div class="footer-content">
         <div class="footer-section about">
             <div class="logo">
                 {{-- Imagen en el footer. Asume que moviste 'images/sf.png' a 'public/images/sf.png' --}}
-                <img src="{{ asset('images/sf.png') }}" alt="Medcity Logo"> <h2>San Francisco</h2> 
+                <img src="{{ asset('images/sf.png') }}" alt="Medcity Logo"> <h2>San Francisco</h2>
             </div>
             <p>
                 Nuestro objetivo es brindar atención de calidad con cortesía, respeto y compasión. Esperamos que nos permita atenderlo y nos esforzamos por ser la primera y mejor opción para la atención médica de su familia.
@@ -191,7 +191,7 @@
             <a href="https://www.google.com/maps/dir/?api=1&destination=2307+Beverley+Rd+Brooklyn,+New+York+11226+United+States" target="_blank" class="get-directions">Get Directions →</a>
             <div class="social-icons">
                 {{-- Aquí asumo que tienes estos iconos en la carpeta public/images/ --}}
-                <a href="#"><img src="{{ asset('images/facebook-icon.png') }}" alt="Facebook"></a> 
+                <a href="#"><img src="{{ asset('images/facebook-icon.png') }}" alt="Facebook"></a>
                 <a href="#"><img src="{{ asset('images/twitter-icon.png') }}" alt="Twitter"></a>
                 <a href="#"><img src="{{ asset('images/instagram-icon.png') }}" alt="Instagram"></a>
             </div>
@@ -203,6 +203,6 @@
         </div>
     </div>
 </footer>
-       
+
 </body>
 </html>

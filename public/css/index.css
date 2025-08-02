@@ -1,0 +1,679 @@
+@import url('https://fonts.cdnfonts.com/css/ica-rubrik-black');
+@import url('https://fonts.cdnfonts.com/css/poppins');
+
+*{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+    text-decoration:none;
+    list-style:none;
+
+}
+
+
+:root{
+    --blanco:#f0f0f0;
+    --black:#454545;
+    --gris-texto: #A0A0A0;
+    --rojo-borde: #E50914;
+    --gris-fondo:#f2f2f2;
+
+    --primary-blue: #007bff; /* Color del botón y posible resaltado */
+    --text-dark: #333;
+    --text-light-gray: #666;
+    --border-light: #eee;
+    --bg-light: #f8f9fa;
+    --card-bg: #fff;
+    --tag-bg-mental-health: #e0f2f7; /* Un azul claro/celeste para Mental Health */
+    --tag-color-mental-health: #007bff; /* Un azul más oscuro para el texto de Mental Health */
+    --tag-bg-wellness: #e6ffe6; /* Un verde muy claro para Wellness */
+    --tag-color-wellness: #28a745; /* Un verde más oscuro para el texto de Wellness */
+    --tag-bg-life-style: #fff3e0; /* Un naranja muy claro para Life Style */
+    --tag-color-life-style: #ffc107;
+    --primary-color: #20b2aa; /* Verde azulado similar al de los checkmarks y algunos botones */
+    --text-color: #333; /* Color de texto general */
+    --light-text-color: #666; /* Color para texto secundario o descriptivo */
+    --background-light: #f8f8f8; /* Fondo claro para secciones */
+    --card-background: #ffffff; /* Fondo para las tarjetas */
+    --border-color: #e0e0e0; /* Color de borde sutil */
+    --heading-color: #1a2a47;
+}
+header{
+    background-color: var(--black);
+    height:90px;
+    position:sticky;
+}
+
+main{
+    margin-top:180px;
+}
+
+body{
+    background-color: #f8f9fa;
+    font-family: 'Poppins', sans-serif;
+
+    background: linear-gradient(to bottom, var(--black-primary) 0%, var(--gris-plomo) 100%);
+
+
+}
+
+
+.container{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.menu{
+    position: absolute;
+    top:20px;
+    left:0;
+    right:0;
+    display:flex;
+    justify-content:center;
+
+}
+
+.navbar {
+    position:relative;
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+    align-items: center;
+
+}
+.navbar .logo-2{
+    position:absolute;
+    top:82%;
+    left:50%;
+    margin-top:-50px;
+    background-color: lightblue;
+    border-radius: 50%;
+
+}
+
+.menu-1 ul,
+.menu-2 ul {
+    display: flex;
+    gap: 30px;
+}
+
+.menu-1 ul li a,
+.menu-2 ul li a {
+    color: var(--blanco);
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1em;
+    transition: color 0.3s ease;
+}
+
+.menu-1 ul li a:hover,
+.menu-2 ul li a:hover {
+    color: var(--rojo-borde);
+}
+
+
+
+.logo-1{
+    width:0;
+}
+
+.logo-2{
+    height: 70px;
+    width:  70px;
+}
+
+.menu-2 {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.menu-2 {
+    color: var(--blanco);
+    font-size: 1.1em;
+    font-weight: 500;
+    margin-right: 10px;
+}
+
+
+.socials{
+    display:flex;
+    width:150px;
+    gap: 15px;
+}
+
+.social {
+    height: 40px;
+    width: 40px;
+    border: 2px solid var(--blanco);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.social:hover {
+    border-color: var(--rojo-borde);
+
+}
+
+.social img {
+    width: 60%;
+    height: 60%;
+    object-fit: contain;
+    filter: invert(1);
+}
+
+/* SECCIÓN DEL VIDEO DE FONDO */
+.hero-video-section {
+    position: relative;
+    width: 100%;
+    height: 800px; /* O la altura que desees para esta sección */
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white; /* Color del texto sobre el video */
+    margin-top: calc(-1 * var(--navbar-height)); /* Esto sube la sección para que el video empiece debajo del top del header */
+}
+
+.hero-video-section .background-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1; /* Envía el video al fondo */
+    transform: translate(-50%, -50%);
+    background-size: cover;
+    object-fit: cover; /* Asegura que el video cubra el área sin distorsión */
+}
+
+/* EL DIFUMINADO DEL VIDEO HACIA EL CONTENIDO INFERIOR */
+.video-gradient-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.4),
+        rgba(0, 0, 0, 0.2) 50%, /* Menos oscuro */
+        rgba(255, 255, 255, 0.5) 80%, /* Empieza a difuminar a blanco aquí */
+        rgba(255, 255, 255, 1) 100% /* Blanco sólido al final del video */
+    );
+    /* Puedes ajustar los porcentajes (0%, 50%, 80%, 100%) y los colores RGBA para el efecto deseado */
+}
+
+/* Contenido (título, párrafo, botón) sobre el video */
+.hero-content {
+    position: relative;
+    z-index: 1; /* Asegura que el contenido esté por encima del video y el overlay */
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Sombra para que el texto resalte */
+}
+.hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+}
+.hero-content p {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+}
+.btn-cita {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: var(--rojo-borde); /* El color de tu botón */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease;
+}
+.btn-cita:hover {
+    background-color: darken(var(--rojo-borde), 10%); /* Oscurece el color al pasar el mouse */
+}
+
+.checkmark-icon{
+    color: #27beb7;
+    margin-right:8px;
+    font-size:1.1em;
+}
+
+.hero-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 20px;
+    background-color: #ffffff;
+    flex-wrap: wrap;
+}
+
+.hero-content-left {
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px;
+    padding-right: 30px;
+    text-align: left;
+}
+
+.hero-content-left p.subtitle {
+    color: var(--primary-color);
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.hero-content-left h2 {
+    font-size: 2.8em;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.hero-content-right {
+    flex: 1;
+    min-width: 300px;
+    max-width: 600px;
+    padding-left: 30px;
+    text-align: left;
+    color: var(--light-text-color);
+}
+
+
+.checklist {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.checklist li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 1.05em;
+    color: var(--text-color);
+}
+
+.checklist .checkmark-icon {
+    color: var(--primary-color);
+    margin-right: 10px;
+    font-size: 1.2em;
+
+}
+
+#menu,
+.menu-icono {
+    display: none;
+}
+
+
+.mano{
+
+    position: relative;
+    margin-left: -300px;
+    margin-right: auto;
+    width: 70%;
+    height:80vh;
+    top: 15%;
+
+}
+/*cartas*/
+
+
+
+
+.recent-events{
+    width:1200px;
+    margin: 40px auto;
+    padding: 0 15px;
+
+}
+
+.section-title{
+    text-align:center;
+    font-size:2.5em;
+    color:var(--text-dark);
+    margin-bottom:40px;
+    font-weight:700;
+}
+
+.articles-container{
+    display:grid;
+    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+    gap: 30px;
+    justify-content:center;
+}
+
+.article-card{
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0.08);
+    display:flex;
+    flex-direction: column;
+    transition:transform 0.3s ease;
+}
+
+.article-card:hover{
+    transform: translateY(-5px);
+}
+
+.article-image{
+    position:relative;
+    width:100%;
+
+    padding-top:62.5%;
+    overflow:hidden;
+}
+
+.article-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.category-i{
+    position:absolute;
+    bottom:15px;
+    left:15px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8em;
+    font-weight: 600;
+    z-index:2;
+}
+
+.category-i.a {
+    background-color: var(--tag-bg-mental-health);
+    color: var(--tag-color-mental-health);
+}
+
+.category-i.b {
+    background-color: var(--tag-bg-wellness);
+    color: var(--tag-color-wellness);
+}
+
+.category-i.c {
+    background-color: var(--tag-bg-life-style);
+    color: var(--tag-color-life-style);
+}
+
+.article-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.article-dates {
+    font-size: 0.9em;
+    color: var(--text-light-gray);
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.article-title {
+    font-size: 1.3em;
+    color: var(--text-dark);
+    margin-bottom: 1px;
+    line-height: 1.4;
+    font-weight: 600;
+}
+
+.article-description {
+    font-size: 0.95em;
+    color: var(--text-light-gray);
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+.read-more-btn {
+    display: inline-block;
+    background-color: var(--primary-blue);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    align-self: flex-start;
+}
+
+.read-more-btn:hover {
+    background-color: #0056b3;
+}
+
+.read-more-btn:hover {
+    background-color: #0056b3; /* Color más oscuro al pasar el ratón */
+}
+
+/* Media Queries para responsividad */
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2em;
+    }
+
+    .articles-container {
+        grid-template-columns: 1fr;
+    }
+
+    .article-card {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .article-title {
+        font-size: 1.2em;
+    }
+}
+
+.main{
+    position:absolute;
+    width:100%;
+    margin:auto;
+    top:90px;
+    left:0;
+    z-index:1;
+}
+
+footer {
+    background-color: #1a237e; /* Color de fondo oscuro similar al de la imagen */
+    color: #ffffff;
+    padding: 40px 20px;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap; /* Permite que las secciones se envuelvan en pantallas pequeñas */
+    justify-content: space-around; /* Distribuye el espacio entre las secciones */
+    max-width: 1200px; /* Ancho máximo para centrar el contenido */
+    margin: 0 auto; /* Centra el contenido */
+}
+
+.footer-section {
+    flex: 1; /* Permite que las secciones ocupen espacio equitativamente */
+    min-width: 250px; /* Ancho mínimo para evitar que se aplasten demasiado */
+    margin: 20px;
+}
+
+/* Estilos de la sección About */
+.footer-section.about {
+    max-width: 300px; /* Un poco más de espacio para la sección about */
+}
+
+.footer-section.about .logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.footer-section.about .logo img {
+    height: 40px; /* Tamaño del logo */
+    margin-right: 10px;
+}
+
+.footer-section.about .logo h2 {
+    margin: 0;
+    font-size: 1.8em;
+    font-weight: bold;
+}
+
+.footer-section.about p {
+    font-size: 0.95em;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.make-appointment {
+    color: #88c0ff; /* Un azul claro para el enlace */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.make-appointment:hover {
+    color: #ffffff;
+}
+
+/* Estilos de encabezados de sección */
+.footer-section h3 {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.footer-section h3::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50px; /* Línea debajo del título */
+    height: 2px;
+    background-color: #88c0ff;
+}
+
+/* Estilos de listas (Departments, Links) */
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.95em;
+    transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+    color: #88c0ff;
+}
+
+/* Estilos de Quick Contacts */
+.footer-section.quick-contacts .phone {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #88c0ff; /* Azul claro para el número de teléfono */
+    margin: 15px 0;
+}
+
+.footer-section.quick-contacts .address {
+    font-size: 0.95em;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.get-directions {
+    color: #88c0ff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    display: inline-block; /* Para que el margin-bottom funcione */
+    margin-bottom: 15px;
+}
+
+.get-directions:hover {
+    color: #ffffff;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons img {
+    height: 24px; /* Tamaño de los iconos sociales */
+    filter: invert(100%); /* Para que los iconos negros se vean blancos en fondo oscuro */
+    transition: filter 0.3s ease;
+}
+
+.social-icons img:hover {
+    filter: invert(50%) sepia(100%) saturate(2000%) hue-rotate(190deg) brightness(120%); /* Cambia a azul claro al pasar el ratón */
+}
+
+/* Estilos del Mapa */
+.footer-section.map-container {
+    flex-grow: 2; /* Permite que el mapa ocupe más espacio */
+    min-width: 300px; /* Ajusta el ancho mínimo del mapa */
+}
+
+#google-map {
+    width: 100%;
+    height: 200px; /* Altura del mapa */
+    background-color: #333; /* Fondo de placeholder mientras carga el mapa */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Media Queries para responsividad */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column; /* Apila las secciones verticalmente en pantallas pequeñas */
+        align-items: center;
+    }
+
+    .footer-section {
+        margin: 20px 0;
+        text-align: center;
+        max-width: 90%; /* Ocupa más ancho en pantallas pequeñas */
+    }
+
+    .footer-section h3::after {
+        left: 50%;
+        transform: translateX(-50%); /* Centra la línea debajo del título */
+    }
+
+    .footer-section.about .logo {
+        justify-content: center;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+}
