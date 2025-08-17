@@ -1,0 +1,274 @@
+### SISTEMA CLÍNICA JWT - PRUEBAS API
+### Base URL: http://localhost:8000/api/v1
+
+### === ENDPOINTS PÚBLICOS ===
+
+### Test de conectividad
+GET http://localhost:8000/api/v1/test
+
+### Especialidades (público)
+GET http://localhost:8000/api/v1/especialidades
+
+### === AUTENTICACIÓN ===
+
+### Login Admin
+POST http://localhost:8000/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin123"
+}
+
+### Login Médico
+POST http://localhost:8000/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "username": "dr_martinez",
+  "password": "medico123"
+}
+
+### Login Paciente
+POST http://localhost:8000/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "username": "juan_perez",
+  "password": "paciente123"
+}
+
+### Registro Nuevo Médico
+POST http://localhost:8000/api/v1/auth/register
+Content-Type: application/json
+
+{
+  "username": "dr_nuevo",
+  "email": "nuevo@clinica.com",
+  "password": "medico123",
+  "rol": "medico",
+  "nombre": "Doctor",
+  "apellido": "Nuevo",
+  "licencia_medica": "LM999999",
+  "telefono_consultorio": "555-9999",
+  "email_profesional": "doctor.nuevo@clinica.com",
+  "id_especialidad": 1
+}
+
+### Registro Nuevo Paciente
+POST http://localhost:8000/api/v1/auth/register
+Content-Type: application/json
+
+{
+  "username": "paciente_nuevo",
+  "email": "paciente@email.com",
+  "password": "paciente123",
+  "rol": "paciente",
+  "nombre": "Paciente",
+  "apellido": "Nuevo",
+  "fecha_nacimiento": "1990-01-01",
+  "telefono": "555-8888",
+  "dni": "99887766",
+  "genero": "M",
+  "direccion": "Nueva Dirección 123"
+}
+
+### === ENDPOINTS PROTEGIDOS (REQUIEREN JWT TOKEN) ===
+### Nota: Reemplazar {TOKEN} con el token obtenido del login
+
+### Información del usuario actual
+GET http://localhost:8000/api/v1/auth/me
+Authorization: Bearer {TOKEN}
+
+### Refrescar token
+POST http://localhost:8000/api/v1/auth/refresh
+Authorization: Bearer {TOKEN}
+
+### Cambiar contraseña
+PUT http://localhost:8000/api/v1/auth/change-password
+Authorization: Bearer {TOKEN}
+Content-Type: application/json
+
+{
+  "current_password": "medico123",
+  "new_password": "nueva123",
+  "new_password_confirmation": "nueva123"
+}
+
+### === GESTIÓN DE CITAS ===
+
+### Listar todas las citas (filtradas por rol)
+GET http://localhost:8000/api/v1/citas
+Authorization: Bearer {TOKEN}
+
+### Listar citas con filtros
+GET http://localhost:8000/api/v1/citas?fecha=2025-08-18&estado=Programada
+Authorization: Bearer {TOKEN}
+
+### Citas de hoy
+GET http://localhost:8000/api/v1/citas/hoy
+Authorization: Bearer {TOKEN}
+
+### Ver cita específica
+GET http://localhost:8000/api/v1/citas/1
+Authorization: Bearer {TOKEN}
+
+### Crear nueva cita (como paciente)
+POST http://localhost:8000/api/v1/citas
+Authorization: Bearer {TOKEN}
+Content-Type: application/json
+
+{
+  "Id_medico": 1,
+  "fecha_cita": "2025-08-20",
+  "hora_cita": "10:30",
+  "duracion_minutos": 30,
+  "motivo_consulta": "Consulta de control general"
+}
+
+### Crear cita (como admin - puede asignar paciente)
+POST http://localhost:8000/api/v1/citas
+Authorization: Bearer {TOKEN_ADMIN}
+Content-Type: application/json
+
+{
+  "Id_paciente": 2,
+  "Id_medico": 1,
+  "fecha_cita": "2025-08-21",
+  "hora_cita": "11:00",
+  "duracion_minutos": 45,
+  "motivo_consulta": "Cita programada por administración"
+}
+
+### Actualizar cita
+PUT http://localhost:8000/api/v1/citas/1
+Authorization: Bearer {TOKEN}
+Content-Type: application/json
+
+{
+  "fecha_cita": "2025-08-22",
+  "hora_cita": "14:00",
+  "motivo_consulta": "Consulta actualizada",
+  "notas_medicas": "Paciente presenta mejoría"
+}
+
+### Cancelar cita
+PATCH http://localhost:8000/api/v1/citas/1/cancelar
+Authorization: Bearer {TOKEN}
+
+### === ENDPOINTS ESPECÍFICOS POR ROL ===
+
+### MÉDICOS ÚNICAMENTE
+
+### Agenda del médico
+GET http://localhost:8000/api/v1/medico/agenda
+Authorization: Bearer {TOKEN_MEDICO}
+
+### Agenda con rango de fechas
+GET http://localhost:8000/api/v1/medico/agenda?fecha_inicio=2025-08-17&fecha_fin=2025-08-24
+Authorization: Bearer {TOKEN_MEDICO}
+
+### Estadísticas del médico
+GET http://localhost:8000/api/v1/medico/estadisticas
+Authorization: Bearer {TOKEN_MEDICO}
+
+### PACIENTES ÚNICAMENTE
+
+### Historial médico del paciente
+GET http://localhost:8000/api/v1/paciente/historial
+Authorization: Bearer {TOKEN_PACIENTE}
+
+### Próximas citas del paciente
+GET http://localhost:8000/api/v1/paciente/proximas-citas
+Authorization: Bearer {TOKEN_PACIENTE}
+
+### ADMINISTRADORES ÚNICAMENTE
+
+### Dashboard administrativo
+GET http://localhost:8000/api/v1/admin/dashboard
+Authorization: Bearer {TOKEN_ADMIN}
+
+### Lista de usuarios
+GET http://localhost:8000/api/v1/admin/usuarios
+Authorization: Bearer {TOKEN_ADMIN}
+
+### Usuarios filtrados por rol
+GET http://localhost:8000/api/v1/admin/usuarios?rol=medico
+Authorization: Bearer {TOKEN_ADMIN}
+
+### Reportes de citas
+GET http://localhost:8000/api/v1/admin/reportes/citas
+Authorization: Bearer {TOKEN_ADMIN}
+
+### Reportes con rango de fechas
+GET http://localhost:8000/api/v1/admin/reportes/citas?fecha_inicio=2025-08-01&fecha_fin=2025-08-31
+Authorization: Bearer {TOKEN_ADMIN}
+
+### === OTROS ENDPOINTS ===
+
+### Lista de médicos disponibles
+GET http://localhost:8000/api/v1/medicos
+Authorization: Bearer {TOKEN}
+
+### === MEDICACIONES (Solo médicos y admin) ===
+
+### Listar medicaciones
+GET http://localhost:8000/api/v1/medicaciones
+Authorization: Bearer {TOKEN_MEDICO}
+
+### Buscar medicaciones
+GET http://localhost:8000/api/v1/medicaciones?buscar=paracetamol
+Authorization: Bearer {TOKEN_MEDICO}
+
+### Crear nueva medicación
+POST http://localhost:8000/api/v1/medicaciones
+Authorization: Bearer {TOKEN_MEDICO}
+Content-Type: application/json
+
+{
+  "nombre_comercial": "Aspirina 500mg",
+  "nombre_generico": "Ácido Acetilsalicílico",
+  "presentacion": "Tabletas",
+  "dosis_estandar": "500mg cada 6 horas",
+  "fabricante": "Laboratorio Test",
+  "descripcion": "Analgésico y antiinflamatorio"
+}
+
+### === EJEMPLOS DE RESPUESTAS ===
+
+### Respuesta exitosa de login:
+# {
+#   "success": true,
+#   "message": "Login exitoso",
+#   "data": {
+#     "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...",
+#     "user": {
+#       "id": 2,
+#       "username": "dr_martinez",
+#       "email": "martinez@clinica.com",
+#       "rol": "medico",
+#       "perfil": {
+#         "tipo": "medico",
+#         "id": 1,
+#         "nombre_completo": "Carlos Martínez",
+#         "licencia_medica": "LM001234",
+#         "especialidad": {
+#           "id": 1,
+#           "nombre": "Medicina General"
+#         }
+#       }
+#     }
+#   }
+# }
+
+### Error de autenticación:
+# {
+#   "success": false,
+#   "message": "Token no proporcionado"
+# }
+
+### Error de permisos:
+# {
+#   "success": false,
+#   "message": "No tienes permisos para acceder a este recurso"
+# }
