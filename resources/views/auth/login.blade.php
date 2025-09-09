@@ -1,73 +1,95 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Login</title>
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+</head>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
+<body>
+    <div class="overlay"></div>
+    
+    <div class="container">
+        <div class="form-box login">
+            <form action="{{ route('login') }}" method="POST">
+                <div>
+                    <h1>LOGIN</h1>
+                    <div class="input-box">
+                        <input type="email" placeholder="correo" required name="email">
+                        <i class="bx bxs-user"></i>
+                    </div>
 
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+                    <div class="input-box">
+                        <input type="password" placeholder="contraseña" required name="password">
+                        <i class="bx bxs-lock-alt"></i>
+                    </div>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                    <div class="forgot-link">
+                        <a href="{{ route('password.request') }}">Olvidaste Contraseña?</a>
+                    </div>
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+                    <button type="submit" class="btn">LOGIN</button>
+                    <p>o ligin con otras plataformas</p>
 
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
+                    <div class="social-icons">
+                        <a href=""><i class="bx bxl-google"></i></a>
+                        <a href=""><i class="bx bxl-facebook"></i></a>
+                        <a href=""><i class="bx bxl-linkedin"></i></a>
+                        <a href=""><i class="bx bxl-github"></i></a>
+                    </div>
                 </div>
+            </form>
+        </div>
+
+        <div class="form-box register">
+            <form action="{{ route('register') }}" method="GET">
+                <div>
+                    <h1>REGISTER</h1>
+                    @if ($errors->any())
+                        <div class="error-message" style="color: red; margin-bottom:10px;text-align:center">
+                        @foreach ($errors->all() as $error)
+                            <p>{{ $error }}</p>
+                        @endforeach
+                        </div>
+                    @endif
+                    <div class="input-box">
+                        <input type="text" placeholder="nombre" required name="name">
+                        <i class="bx bxs-user"></i>
+                    </div>
+
+                    <div class="input-box">
+                        <input type="email" placeholder="correo" required name="email">
+                        <i class="bx bxs-lock-alt"></i>
+                    </div>
+
+                    <button type="submit"></button>
+                    <p>O registrate con otras plataformas</p>
+                    <div class="social-icons">
+                        <a href=""><i class="bx bxl-google"></i></a>
+                        <a href=""><i class="bx bxl-facebook"></i></a>
+                        <a href=""><i class="bx bxl-linkedin"></i></a>
+                        <a href=""><i class="bx bxl-github"></i></a>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="toggle-box">
+            <div class="toggle-panel toggle-left">
+                <h1>Hola, Bienvenido!</h1>
+                <p>No tienes una cuenta?</p>
+                <button class="btn register-btn">Registrar</button>
+            </div>
+
+            <div class="toggle-panel toggle-right">
+                <h1>Bienvenido de Nuevo!</h1>
+                <p>Ya tienes una cuenta?</p>
+                <button class="btn login-btn">Login</button>
             </div>
         </div>
     </div>
-</div>
-@endsection
+    <script src="{{ asset('js/form.js') }}"></script>
+</body>
+</html>

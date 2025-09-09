@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    {{-- Tu CSS personalizado. Asume que moviste 'backend/css/index.css' a 'public/backend/css/index.css' --}}
+    
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
@@ -15,7 +15,7 @@
 <body>
     <header>
         <div class="menu container">
-            {{-- Imágenes. Asume que moviste 'images/' a 'public/images/' --}}
+       
             <img class="logo-1" src="{{ asset('images/logo.jpg') }}" alt="">
             <input type="checkbox" id="menu">
             <label for="menu">
@@ -35,7 +35,7 @@
 
                 <div class="menu-2">
                     <ul>
-                        <li><a href="">Login</a></li>
+                        <li><a href="{{ route('login') }}">Login</a></li>
                     </ul>
 
                     <div class="socials">
@@ -64,7 +64,7 @@
 
     <section class="hero-video-section">
         <video autoplay loop muted playsinline class="background-video">
-            {{-- Video. Asume que moviste 'video/' a 'public/video/' --}}
+          
             <source src="{{ asset('video/web.mp4') }}" type="video/mp4">
             Tu navegador no soporta el tag de video.
         </video>
